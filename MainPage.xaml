@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI_ControleFinanceiro.ViewModels"
+             x:Class="MAUI_ControleFinanceiro.MainPage"
+             BackgroundColor="#264653"
+             >
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CarouselView ItemsSource="{Binding SaldoItems}" Grid.ColumnSpan="2">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="10" BackgroundColor="#264653" HorizontalOptions="FillAndExpand" Margin="0,30" BorderColor="#264653" Padding="0">
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding Nome}" FontSize="32" FontAttributes="Bold" VerticalOptions="StartAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                                <Label Text="{Binding Saldo}" FontSize="60" FontAttributes="Bold" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Border Grid.Row="1" Grid.ColumnSpan="2" StrokeShape="RoundRectangle 20,20,0,0" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Ultimos Lançamentos" TextColor="Black" FontSize="18" FontAttributes="Bold" 
+                       HorizontalTextAlignment="Center"  
+                       VerticalOptions="Start" 
+                       LineBreakMode="WordWrap"
+                           Padding="15"/>
+                    <Frame HeightRequest="450" Padding="15,0" BorderColor="White">
+                        <ScrollView>
+                            <CollectionView ItemsSource="{Binding Lancamentos}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BackgroundColor="{Binding CorFundo}" HorizontalOptions="FillAndExpand" Margin="10,5" HeightRequest="80" Padding="10" BorderColor="White">
+                                            <FlexLayout JustifyContent="SpaceBetween" Direction="Column">
+                                                <Grid HorizontalOptions="FillAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{Binding Nome}" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start" Grid.Row="0"/>
+                                                    <Label Text="{Binding Valor}" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" />
+                                                    <Label Text="{Binding Descricao}" Grid.Row="1" TextColor="White"/>
+                                                    <Label Text="{Binding Data}" Grid.Row="1" Grid.Column="1" TextColor="White"/>
+                                                </Grid>
+                                            </FlexLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </Frame>
+
+                    <!--<Frame BackgroundColor="#2a9d8f" HorizontalOptions="FillAndExpand" Margin="10,5" HeightRequest="80" Padding="10">
+                        <FlexLayout JustifyContent="SpaceBetween" Direction="Column">
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="Fernanda" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start" Grid.Row="0"/>
+                                <Label Text="1500,00" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="Salario" Grid.Row="1" TextColor="White"/>
+                                <Label Text="05/03/2023" Grid.Row="1" Grid.Column="1" TextColor="White"/>
+                            </Grid>
+
+                        </FlexLayout>
+                    </Frame>
+                    <Frame BackgroundColor="#e63946" HorizontalOptions="FillAndExpand" Margin="10,5" HeightRequest="80" Padding="10">
+                        <FlexLayout JustifyContent="SpaceBetween" Direction="Column">
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="Geovany" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start" Grid.Row="0"/>
+                                <Label Text="3000,00" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="Descrição Teste" Grid.Row="1" TextColor="White"/>
+                                <Label Text="05/03/2023" Grid.Row="1" Grid.Column="1" TextColor="White"/>
+                            </Grid>
+
+                        </FlexLayout>
+                    </Frame>-->
+                </StackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>
